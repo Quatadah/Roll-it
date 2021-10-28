@@ -14,15 +14,14 @@ public class Reset : MonoBehaviour
     // Update is called once per frame
     public TextMeshProUGUI timer;
 
+    public GameObject ResetButton;
     public float score;
-    
-
 
     void Start(){
         score = 0f;
         this.LossText.SetActive(false);
+        this.ResetButton.SetActive(false);
     }
-
 
     void Update()
     {
@@ -36,19 +35,26 @@ public class Reset : MonoBehaviour
         if (timeRemaining <= 0 && player.getCount() < 11){
             timer.text = "Timer : 0";
             this.LossText.SetActive(true);
+            this.ResetButton.SetActive(true);
             player.lost = true;
         }
         
+        if (player.won())
+            this.ResetButton.SetActive(true);
         
 
         if (transform.position.y < threshold ){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+
+    }
         /*
         else if (player.getCount() == 11){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             Debug.Log("You win");
         }
         */
+    public void OnButtonPress(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     public bool lost;
     public Reset reset;
+    
     private void Awake ()
     {
         this.lost = false;
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
     public bool won(){
         if (!lost)
-            return this.count == 11;
+            return this.count >= 11;
         return false;
         
     }
